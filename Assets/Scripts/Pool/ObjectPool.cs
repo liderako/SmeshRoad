@@ -55,6 +55,7 @@ namespace Pool
         /// <param name="pooledObject">Object previously obtained from this ObjectPool</param>
         public void ReturnObject(T pooledObject)
         {
+//            Debug.Log(pooledObject);
             Debug.Assert(m_usedList.Contains(pooledObject));
 
             // Put the pooled object back in the free list.
@@ -62,7 +63,7 @@ namespace Pool
             m_freeList.Add(pooledObject);
 
             // Reparent the pooled object to us, and disable it.
-            var pooledObjectTransform = pooledObject.transform;
+            Transform pooledObjectTransform = pooledObject.transform;
             pooledObjectTransform.parent = transform;
             pooledObjectTransform.localPosition = Vector3.zero;
             pooledObject.gameObject.SetActive(false);

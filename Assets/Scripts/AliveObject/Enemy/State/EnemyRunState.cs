@@ -20,11 +20,10 @@ namespace AliveObject.Enemy.State
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.layer == 9) //Attack
+            if (collision.gameObject.GetComponent<Player.Player>() != null) //Attack
             {
                 _attackState.BaseInit(collision.gameObject);
                 _owner.ChangeState(_attackState);
-
             }
         }
     }

@@ -11,11 +11,12 @@ namespace AliveObject
         protected IState _state;
         [SerializeField] protected float _speed;
         [SerializeField] protected Vector3 _direction;
+        [SerializeField] protected float _minSpeedAnimation = 0.7f;
+        [SerializeField] protected float _maxSpeedAnimation = 1.5f;
 
-
-        protected void Start()
+        private void Awake()
         {
-            ChangeState(_state);
+            GetComponent<Animator>().speed = Random.Range(_minSpeedAnimation, _maxSpeedAnimation);
         }
 
         void Update()

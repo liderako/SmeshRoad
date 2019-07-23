@@ -10,7 +10,8 @@ namespace Managers
     {
         public static ViewManager Vm;
         [SerializeField] private TextMeshProUGUI textStart;
-        [SerializeField] private TextMeshProUGUI scoreText;
+        //[SerializeField] private TextMeshProUGUI scoreText;
+        [SerializeField] private TextMeshProUGUI textNumberLevel;
         [SerializeField] private TextMeshProUGUI textGameOver;
         
         public void Awake()
@@ -25,37 +26,49 @@ namespace Managers
         public void Start()
         {
             InitEvent();
+            textNumberLevel.text = "Level " + GameManager.Gm.Level;
         }
 
         private void InitEvent()
         {
-            ScoreManager.Sm.ChangeScore += UpdateScore;
-            GameManager.Gm.StartGame += RenderStartUI;
+            //ScoreManager.Sm.ChangeScore += UpdateScore;
+            GameManager.Gm.StartGame += RenderGameUI;
             GameManager.Gm.GameOver += RenderGameOverUI;
+            GameManager.Gm.Clear += Clear;
+            GameManager.Gm.GameFinish += RenderFinishUI;
         }
 
         private void UpdateScore(int score)
         {
-            scoreText.text = score.ToString();
+           // scoreText.text = score.ToString();
         }
 
-        private void RenderStartUI()
+        private void RenderGameUI()
         {
             textStart.enabled = false;
-            scoreText.enabled = true;
+            textNumberLevel.text = "Level " + GameManager.Gm.Level;
         }
         
         private void RenderGameOverUI()
         {
             textGameOver.enabled = true;
-            scoreText.enabled = false;
+        }
+
+        public void RenderFinishUI()
+        {
+            textNumberLevel.text = "LEVEL " + GameManager.Gm.Level + " COMPLETE";
         }
 
         private void DeactivateUI()
         {
             textStart.enabled = true;
-            scoreText.enabled = false;
             textGameOver.enabled = false;
+        }
+
+        private void Clear()
+        {
+            textNumberLevel.text = "Level " + GameManager.Gm.Level;
+            DeactivateUI();
         }
     }
 }

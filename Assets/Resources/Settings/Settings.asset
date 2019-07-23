@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5036a0ca9bfbf48ca984cf71a0d9274a, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  _distanceBeetwenTraps: 5
-  _lengthRoad: 30
-  _sizeFloorPool: 30
-  _sizeEnemyPool: 30
-  _sizeTrapPool: 10
-  _sizePlayerPool: 30
+  _distanceBeetwenTraps: 7
+  _lengthRoad: 100
+  _safeZoneLenght: 8
+  _sizeFloorPool: 250
+  _sizeEnemyPool: 750
+  _sizeTrapPool: 55
+  _sizePlayerPool: 60
   _directionMainMove: {x: 0, y: 0, z: -1}
-  _speedMain: 5
+  _speedMain: 50
+  _speedBaseEnemy: 40
+  _speedBasePlayer: 50

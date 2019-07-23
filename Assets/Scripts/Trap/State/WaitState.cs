@@ -10,23 +10,38 @@ namespace Trap.State
         BaseTrap            _owner;
         ActivateState   _activateState;
         bool            _canActivate;
+        bool            _active;
 
-
-        public void BaseInit(ref bool canActivate, BaseTrap trap)
+        private void Start()
         {
+            _active = false;
+            _canActivate = false;
+        }
+        public void BaseInit(bool canActivate, BaseTrap trap)
+        {
+            _canActivate = false;
             _canActivate = canActivate;
             _owner = trap;
             _activateState = GetComponent<ActivateState>();
         }
+  
         public void UpdateState()
         {
+            _active = false;
+            if(Input.GetMouseButton(0))
+            {
+                Activate();
 
+            }
         }
 
-        private void OnMouseUp()
+        public void Activate()
         {
-            if (_canActivate)
+            if (_canActivate && !_active)
+            {
                 _owner.ChangeState(_activateState);
+                _active = true;
+            }
         }
     }
 }
